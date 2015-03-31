@@ -15,6 +15,7 @@ ADD my.cnf /etc/mysql/conf.d/my.cnf
 RUN chmod 644 /etc/mysql/conf.d/my.cnf
 ADD run.sh /run.sh
 ADD create_first_admin_user.sh /create_first_admin_user.sh
+ADD create_database_and_users.sh /create_database_and_users.sh
 RUN chmod 755 /*.sh
 
 # Expose port and volumes
