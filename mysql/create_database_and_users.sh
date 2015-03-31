@@ -15,6 +15,7 @@ done
 
 DATABASES=("database1" "database2")
 declare -A USERS=(["user1"]="pass1" ["user2"]="pass2")
+ADMINS=("user1")
 
 # Create databases
 for DB in ${DATABASES[*]}; do
@@ -29,6 +30,10 @@ for USER in "${!USERS[@]}"; do
     for DB in $DATABASES; do
         mysql -uroot -e "GRANT ALL PRIVILEGES ON $DB.* TO '$USER'@'%';"
     done
+done
+
+for ADMIN in "${ADMINS[*]}"; do
+    mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '$ADMIN'@'%';"
 done
 
 mysqladmin -uroot shutdown
